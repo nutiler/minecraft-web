@@ -5,21 +5,17 @@ function render() {
     var radius = 32;
     var alpha = 0;
     var sidebarWidth = 250;
-
     camera = new THREE.PerspectiveCamera(75, (window.innerWidth - sidebarWidth) / window.innerHeight, 1, 10000);
     camera.position.y = -12;
     scene = new THREE.Scene();
-
     canvas = document.getElementById('canvas');
     canvas.width = 64;
     canvas.height = 64;
-    
     var context = canvas.getContext("2d");
     var skinTexture = new THREE.Texture(canvas);
     skinTexture.magFilter = THREE.NearestFilter;
     skinTexture.minFilter = THREE.NearestMipMapNearestFilter;
-
-    // Get the texture for the skin
+    // Get the texture for the skin.
     material = new THREE.MeshBasicMaterial({
         map: skinTexture,
         side: THREE.FrontSide
@@ -31,27 +27,22 @@ function render() {
         alphaTest: 0.5,
         side: THREE.DoubleSide
     });
-
     var img = new Image();
     img.crossOrigin = '';
     var hasAnimate = false;
     img.onload = function() {
         console.log("Loaded skin.");
-
-        // Erase what was on the canvas before
+        // Erase what was on the canvas before.
         context.clearRect(0, 0, 64, 64);
-
-        // Draw the image to the canvas
+        // Draw the image to the canvas.
         context.drawImage(img, 0, 0);
-
-        // Convert the image if need be
+        // Convert the image if old skin.
         if (img.height == 32) Convert6432To6464(context);
         FixNonVisible(context);
         FixOverlay(context);
         skinTexture.needsUpdate = true;
         material.needsUpdate = true;
         material2.needsUpdate = true;
-
         if (!hasAnimate) {
             RenderSkin();
             hasAnimate = true;
@@ -61,7 +52,6 @@ function render() {
     img.onerror = function() {
         console.log("Failed loading " + img.src);
     }
-
     img.src = 'https://crafatar.com/skins/nutiler';
 
     function RenderSkin() {
@@ -119,7 +109,6 @@ function render() {
         headMesh = new THREE.Mesh(headBox, material);
         headMesh.name = "head";
         scene.add(headMesh);
-
         // Body Parts
         var bodyTop = [
             new THREE.Vector2(0.3125, 0.6875),
@@ -175,7 +164,6 @@ function render() {
         bodyMesh.name = "body";
         bodyMesh.position.y = -10;
         scene.add(bodyMesh);
-
         // Right Arm Parts
         var rightArmTop = [
             new THREE.Vector2(0.6875, 0.6875),
@@ -232,8 +220,7 @@ function render() {
         rightArmMesh.position.y = -10;
         rightArmMesh.position.x = -6;
         scene.add(rightArmMesh);
-
-        // Left Arm Parts
+        // Left Arm Parts.
         var leftArmTop = [
             new THREE.Vector2(0.5625, 0.1875),
             new THREE.Vector2(0.625, 0.1875),
@@ -289,8 +276,7 @@ function render() {
         leftArmMesh.position.y = -10;
         leftArmMesh.position.x = 6;
         scene.add(leftArmMesh);
-
-        // Right Leg Parts
+        // Right Leg Parts.
         var rightLegTop = [
             new THREE.Vector2(0.0625, 0.6875),
             new THREE.Vector2(0.125, 0.6875),
@@ -346,8 +332,7 @@ function render() {
         rightLegMesh.position.y = -22;
         rightLegMesh.position.x = -2;
         scene.add(rightLegMesh);
-
-        // Left Leg Parts
+        // Left Leg Parts.
         var leftLegTop = [
             new THREE.Vector2(0.3125, 0.1875),
             new THREE.Vector2(0.375, 0.1875),
@@ -403,8 +388,7 @@ function render() {
         leftLegMesh.position.y = -22;
         leftLegMesh.position.x = 2;
         scene.add(leftLegMesh);
-
-        // Head Overlay Parts
+        // Head Overlay Parts.
         var head2Top = [
             new THREE.Vector2(0.625, 0.875),
             new THREE.Vector2(0.75, 0.875),
@@ -458,8 +442,7 @@ function render() {
         head2Mesh = new THREE.Mesh(head2Box, material2);
         head2Mesh.name = "head2"
         scene.add(head2Mesh);
-
-        // Body Overlay Parts
+        // Body Overlay Parts.
         var body2Top = [
             new THREE.Vector2(0.3125, 0.4375),
             new THREE.Vector2(0.4375, 0.4375),
@@ -514,8 +497,7 @@ function render() {
         body2Mesh.name = "body2";
         body2Mesh.position.y = -10;
         scene.add(body2Mesh);
-
-        // Right Arm Overlay Parts
+        // Right Arm Overlay Parts.
         var rightArm2Top = [
             new THREE.Vector2(0.6875, 0.4375),
             new THREE.Vector2(0.75, 0.4375),
@@ -571,8 +553,7 @@ function render() {
         rightArm2Mesh.position.y = -10;
         rightArm2Mesh.position.x = -6;
         scene.add(rightArm2Mesh);
-
-        // Left Arm Overlay Parts
+        // Left Arm Overlay Parts.
         var leftArm2Top = [
             new THREE.Vector2(0.8125, 0.1875),
             new THREE.Vector2(0.875, 0.1875),
@@ -628,8 +609,7 @@ function render() {
         leftArm2Mesh.position.y = -10;
         leftArm2Mesh.position.x = 6;
         scene.add(leftArm2Mesh);
-
-        // Right Leg Overlay Parts
+        // Right Leg Overlay Parts.
         var rightLeg2Top = [
             new THREE.Vector2(0.0625, 0.4375),
             new THREE.Vector2(0.125, 0.4375),
@@ -685,8 +665,7 @@ function render() {
         rightLeg2Mesh.position.y = -22;
         rightLeg2Mesh.position.x = -2;
         scene.add(rightLeg2Mesh);
-
-        // Left Leg Overlay Parts
+        // Left Leg Overlay Parts.
         var leftLeg2Top = [
             new THREE.Vector2(0.0625, 0.1875),
             new THREE.Vector2(0.125, 0.1875),
@@ -742,8 +721,7 @@ function render() {
         leftLeg2Mesh.position.y = -22;
         leftLeg2Mesh.position.x = 2;
         scene.add(leftLeg2Mesh);
-        
-        // Add to page
+        // Display with webGL.
         container = document.getElementById('model');
         renderer = new THREE.WebGLRenderer({
             alpha: true
@@ -762,74 +740,64 @@ function render() {
     function Animate() {
         requestAnimationFrame(Animate);
         camera.rotation.y = alpha;
-
         alpha += Math.PI / 320;
         camera.position.z = radius * Math.cos(alpha);
         camera.position.x = radius * Math.sin(alpha);
-
-        // Leg Swing
+        // Leg Swing.
         leftLeg2Mesh.rotation.x = leftLegMesh.rotation.x = Math.cos(alpha * 4);
         leftLeg2Mesh.position.z = leftLegMesh.position.z = 0 - 6 * Math.sin(leftLegMesh.rotation.x);
         leftLeg2Mesh.position.y = leftLegMesh.position.y = -16 - 6 * Math.abs(Math.cos(leftLegMesh.rotation.x));
         rightLeg2Mesh.rotation.x = rightLegMesh.rotation.x = Math.cos(alpha * 4 + (Math.PI));
         rightLeg2Mesh.position.z = rightLegMesh.position.z = 0 - 6 * Math.sin(rightLegMesh.rotation.x);
         rightLeg2Mesh.position.y = rightLegMesh.position.y = -16 - 6 * Math.abs(Math.cos(rightLegMesh.rotation.x));
-
-        // Arm Swing
+        // Arm Swing.
         leftArm2Mesh.rotation.x = leftArmMesh.rotation.x = Math.cos(alpha * 4 + (Math.PI));
         leftArm2Mesh.position.z = leftArmMesh.position.z = 0 - 6 * Math.sin(leftArmMesh.rotation.x);
         leftArm2Mesh.position.y = leftArmMesh.position.y = -4 - 6 * Math.abs(Math.cos(leftArmMesh.rotation.x));
         rightArm2Mesh.rotation.x = rightArmMesh.rotation.x = Math.cos(alpha * 4);
         rightArm2Mesh.position.z = rightArmMesh.position.z = 0 - 6 * Math.sin(rightArmMesh.rotation.x);
         rightArm2Mesh.position.y = rightArmMesh.position.y = -4 - 6 * Math.abs(Math.cos(rightArmMesh.rotation.x));
-
         renderer.render(scene, camera);
     }
-    
-    // Get usernames
-
+    // Get username from input.
     $(document).ready(function() {
-        console.log("Rendering Ready.")
-        var skinName;
-        $(document).on("click", "#player", function() {
-            if ($('#playername').val() === "") {
-                console.log("Defaulting to Nutiler.");
-                img.src = 'https://crafatar.com/skins/nutiler';
-                skinName = "Nutiler";
-            } else {
-                skinName = $('#playername').val();
-                skinName.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
-                console.log("Loading Skin: " + skinName + ".");
-                img.src = 'https://crafatar.com/skins/' + skinName;
-                
-
-            $.ajax({
-                url: `https://mcapi.ca/profile/${skinName}`,
-                method: "GET",
-                success: function(data) {
-                    if (data.error === "Invalid playername \/ UUID.") {
-                        $("#uuid").text("TRIM UUID: Invalid player name.");
-                        $("#fulluuid").text("FULL UUID: Invalid UUID.");
+                console.log("Rendering Ready.")
+                var skinName;
+                $(document).on("click", "#player", function() {
+                            // Validate input.
+                            if ($('#playername').val() === "") {
+                                console.log("Defaulting to Nutiler.");
+                                img.src = 'https://crafatar.com/skins/nutiler';
+                                skinName = "Nutiler";
+                            } else {
+                                skinName = $('#playername').val();
+                                skinName = skinName.replace(/[`~!@#$%^&*()|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+                                console.log("Loading Skin: " + skinName.replace(/[`~!@#$%^&*()|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '') + ".");
+                                // Get skin & player data.
+                                img.src = 'https://crafatar.com/skins/' + skinName.replace(/[`~!@#$%^&*()|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+                                $.ajax({
+                                            url: `https://mcapi.ca/profile/${skinName.replace(/[`~!@#$%^&*()|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '')}`,
+                    method: "GET",
+                    success: function(data) {
+                        if (data.error === "Invalid playername \/ UUID.") {
+                            $("#uuid").text("TRIM UUID: Invalid player name.");
+                            $("#fulluuid").text("FULL UUID: Invalid UUID.");
+                        }
+                        if (data.error === "Something went wrong." || data.uuid === undefined) {
+                            $("#uuid").text("TRIM UUID: Missing from database.");
+                            $("#fulluuid").text("FULL UUID: Perhaps a legacy account?");
+                        }
+                        else {
+                        
+                        $("#uuid").text("TRIM UUID: " + data.uuid);
+                        $("#fulluuid").text("FULL UUID: " + data.uuid_formatted);
+                        }
                     }
-                    if (data.error === "Something went wrong." || data.uuid === undefined) {
-                        $("#uuid").text("TRIM UUID: Missing from database.");
-                        $("#fulluuid").text("FULL UUID: Perhaps a legacy account?");
-                    }
-                    else {
-                    
-                    $("#uuid").text("TRIM UUID: " + data.uuid);
-                    $("#fulluuid").text("FULL UUID: " + data.uuid_formatted);
-                    }
-                }
-            });
-
-                
-                
-                
+                });
             }
-
             $('#playername').val(skinName);
         });
+        // Download flattened skin.
         $(document).on("click", "#canvas", function() {
             console.log("Skin downloaded.")
             var $this = $(this);

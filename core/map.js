@@ -1,26 +1,20 @@
 function init(newlat, newlong, serverimg, servername, servercity, servercountry) {
-
+    // Setup Map <3 Snazzy Maps.
     var center = new google.maps.LatLng(newlat, newlong);
-    // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-    var isDraggable = $(document).width() > 1024 ? true : false; 
-
+    var isDraggable = $(document).width() > 1024 ? true : false;
     var mapOptions = {
-
         zoom: 6,
         scrollwheel: true, // If navigation gets hard back to turn false.
         draggable: isDraggable,
         center: center,
         streetViewControl: true,
         mapTypeControl: true,
-
         zoomControlOptions: {
             position: google.maps.ControlPosition.LEFT_TOP
         },
-
         streetViewControlOptions: {
             position: google.maps.ControlPosition.LEFT_TOP
         },
-
         styles: [{
             "featureType": "administrative.province",
             "elementType": "all",
@@ -125,34 +119,22 @@ function init(newlat, newlong, serverimg, servername, servercity, servercountry)
             }]
         }]
     };
-
+    // Setting a new pin.
     var map = new google.maps.Map(document.getElementById('map'), mapOptions, center);
-
     var locations = [
-        [
-            `<h6><i class="fa fa-server"></i>  ${servername}</h6><p>${servercity}, ${servercountry}</p>`,
+        [`<h6><i class="fa fa-server"></i>  ${servername}</h6><p>${servercity}, ${servercountry}</p>`,
             newlat, newlong
         ]
     ];
-
     var infowindow = new google.maps.InfoWindow();
-
     var marker, i;
     var image = serverimg;
-
-    // localStorage.setItem("image", image);
-    // var changed = localStorage.image;
-    // $("#imgchanger").append("<img id='changeImage' src='" + "https://mcapi.ca/query/mc.stormheart.net/icon" + "'/>");
-    // img = document.getElementById('changeImage');
-    // Attempting to make the icons prettier
-
     for (i = 0; i < locations.length; i++) {
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
             map: map,
             icon: image
         });
-
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 infowindow.setContent(locations[i][0]);
@@ -160,9 +142,7 @@ function init(newlat, newlong, serverimg, servername, servercity, servercountry)
             };
         })(marker, i));
     }
-
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.open(map, marker);
     });
-
 }
