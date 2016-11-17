@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-us" class="no-js">
+
+<head>
+	<meta charset="utf-8">
+	<title>STORMHEART - UTILITIES</title>
+	<meta name="description" content="The description should optimally be between 150-160 characters.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="ThemeHelite">
+
+	<!-- Libraries jQuery, Easing and Bootstrap -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.easings.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<!--Skin Loader & Render-->
+	<script src="core/skinflat.js" type="text/javascript"></script>
+	<script src="core/skinrender.js" type="text/javascript"></script>
+	<script src="js/three.min.js" type="text/javascript"></script>
+
+	<!-- ================= Favicons ================== -->
+	<link rel="shortcut icon" href="img/favicon.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="img/favicon-retina-ipad.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/favicon-retina-iphone.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/favicon-standard-ipad.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="img/favicon-standard-iphone.png">
+
+	<!-- ============== Resources style ============== -->
+	<link rel="stylesheet" type="text/css" href="css/style-multi-scroll.css" />
+	<link rel="stylesheet" type="text/css" href="core/render.css" />
+
+</head>
+
+<body>
+	<!-- +++ Page loading +++ -->
+	<div id="loading">
+		<div id="preloader" class="animated-middle flipInX">
+			<img src="img/logo.png" alt="" class="loading-logo" />
+			<span class="loading-text">www.<strong>stormheart</strong>.net</span>
+			<span class="load">
+			<span class="loading-dot"></span>
+			<span class="loading-dot"></span>
+			<span class="loading-dot"></span>
+			<span class="loading-dot"></span>
+			</span>
+		</div>
+	</div>
+
+	<div id="multi-div">
+
+		<!-- OPEN - LEFT PART -->
+		<div class="ms-left">
+			<div class="ms-section" id="left1">
+
+				<!-- Your logo -->
+				<img src="img/logo.png" alt="" class="home-logo" />
+
+				<!-- Background slideshow & light overlay -->
+				<div class="slideshow-home-left">
+					<div class="slideshow-overlay-left"></div>
+				</div>
+				<div class="intro">
+					<h1 class="open-anim opacity-0">Minecraft Utilities</h1>
+					<p class="open-anim opacity-0">View any skin on a <strong>3D model</strong> using advanced <strong>webGL</strong>.</p>
+					<p>Ping any server to receive information and let it dynamically plot the location with <strong>geoIP</strong> coordinates.</p>
+					<a id="button-more" data-target="right2" class="light-btn open-anim opacity-0">Get Started</a>
+				</div>
+
+				<!-- Scroll indicator -->
+				<div class="scroll-indicator">
+					<a id="indicator-scroll" data-target="right2"><i class="icon ion-ios-arrow-down"></i></a>
+				</div>
+			</div>
+
+			<!-- +++ END - Home Left +++ -->
+			<!-- +++ START - About Left +++ -->
+
+			<div class="ms-section" id="left1">
+				<div class="text-left-block">
+					<canvas id="canvas" width="64" height="64"></canvas>
+					<div id="invert-slideshow" class="slideshow-about">
+						<div class="card">
+							<div class="ra">
+								<div id="model">
+								</div>
+							</div>
+						</div>
+					</div>
+					<script type="text/javascript">
+						setTimeout(function() {
+							render();
+						}, 4000)
+					</script>
+				</div>
+			</div>
+
+			<!-- +++ END - About Left +++ -->
+			<!-- +++ START - Contact Left +++ -->
+
+			<div class="ms-section" id="left3">
+				<div class="text-left-block">
+					<div class="left-center-text split-section">
+						<div class="left-center-part">
+							<div class="col-xs-12 col-sm-12 col-lg-12">
+								<hr style="height:0pt; visibility:hidden;" />
+								<form id="contact-form" onsubmit="return false;">
+									<div class="col-xs-12 col-sm-12 col-lg-12">
+										<h2>Server Information</h2>
+										<p>View the statistics, version, description, response time, and location using <strong>geoIP</strong> to locate.</p>
+										<p style="visibility: hidden;">Empty Line</p>
+										<input id="servername" type="text" class="form form-control" placeholder="Enter Server address port default is 25565, mc.stormheart.net" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Server address port default is 25565, mc.stormheart.net'"
+											name="name" data-name="Name">
+										<button id="server" type="submit" class="btn btn-color">Search</button>
+									</div>
+									<p style="visibility: hidden;">Empty Line</p>
+									<p style="visibility: hidden;">Empty Line</p>
+									<div class="col-xs-12 col-sm-6 col-lg-6">
+										<div class="form-group">
+											<div id="players" class="form form-control">Players:</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-lg-6">
+										<div class="form-group">
+											<div id="version" class="form form-control">Version:</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-lg-6">
+										<div class="form-group">
+											<div id="status" class="form form-control">Response:</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-lg-6">
+										<div class="form-group">
+											<div id="location" class="form form-control">Location Loading...</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-12 col-lg-12">
+										<div id="addmotd" class="form-group">
+										</div>
+									</div>
+								</form>
+
+							</div>
+						</div>
+						<p class="copyright">© STORMHEART - 2016</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- CLOSE - LEFT PART -->
+	<!-- OPEN - RIGHT PART -->
+
+	<div class="ms-right" id="right-part">
+
+		<!-- +++ START - Home Right +++ -->
+		<div class="ms-section" id="right1">
+
+			<!-- Background slideshow & light overlay -->
+			<div class="slideshow-home-right">
+				<div class="slideshow-overlay-right"></div>
+			</div>
+		</div>
+
+		<!-- +++ END - Home Right +++ -->
+		<div class="ms-section" id="right2">
+			<div class="text-left-block">
+				<div class="left-center-text split-section">
+					<div class="left-center-part">
+						<div class="col-xs-12 col-sm-12 col-lg-12">
+							<form id="contact-form" onsubmit="return false;">
+								<div class="col-xs-12 col-sm-12 col-lg-12">
+									<h2>Skin Viewer</h2>
+									<p>Using <strong>webGL</strong> to render the skin using a JavaScript 3D Library. You can also <strong>download</strong> the skin by clicking on the flattened version.</p>
+									<hr style="height:0pt; visibility:hidden;" />
+									<input id="playername" type="text" class="form form-control" placeholder="Enter a username or any UUID, example: nutiler." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter a username or any UUID, example: nutiler.'" name="name" data-name="Name">
+									<button type="submit" id="player" class="btn btn-color">Search</button>
+								</div>
+								<p style="visibility: hidden;">Empty Line</p>
+								<p style="visibility: hidden;">Empty Line</p>
+								<div class="col-xs-12 col-sm-12 col-lg-12">
+									<div id="uuid" type="text" class="form form-control" onclick="this.select();">Trim UUID: 2844a2b8e41b4d728b36f49be8a87809</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-lg-12">
+									<div id="fulluuid" type="text" class="form form-control" onclick="this.select();">Full UUID: 2844a2b8-e41b-4d72-8b36-f49be8a87809</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="ms-section" id="right3">
+					<div class="map-info split-section">
+						<div id="map"></div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- CLOSE - RIGHT PART -->
+	</div>
+
+	<!-- +++ START - About panel +++ -->
+	<div id="info">
+
+		<!-- Cross to close the About panel on top right -->
+		<button class="close-newsletter"><i class="icon ion-close-round"></i></button>
+		<div class="content">
+
+			<!-- Your logo -->
+			<img src="img/logo.png" alt="" class="brand-logo" />
+			<p class="subtitle">
+				Huge shoutout to all of the open API's required to complete this project and resources.
+				<strong><a href="https://twitter.com/earthiverse">@earthiverse</a></strong> with the three.js texture mapping and model animations. <strong><a href="https://mcapi.ca/">@mcapi.ca</a></strong> for their great database to query servers, players, and domains. <strong><a href="https://crafatar.com/">@crafatar.com</a></strong> with the best resources for obtaining skins. <strong><a href="">@Madeon08</a></strong> has a stunning framework and design, and <strong><a href="https://twitter.com/Dinnerbone">@dinnerbone</a></strong> for making this all possible!</p>
+			<div id="subscribe">
+
+				<form id="notifyMe">
+					<div class="form-group">
+						<div class="controls">
+
+							<!-- Field  -->
+							<div id="mail-sub" name="email" class="form-control email srequiredField">Thank you for visitng, be sure to view my github!</div>
+							<!-- Spinner top left during the submission -->
+							<i class="fa fa-spinner opacity-0"></i>
+							<!-- Button -->
+							<button id="github" class="btn btn-lg submit">View github</button>
+							<div class="clear"></div>
+
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<p class="spam-news"><i class="fa fa-server"></i> hosted on www.stormheart.net</p>
+
+	</div>
+	<!-- +++ END - About panel +++ -->
+
+	<!-- +++ Button used for opening the About panel +++ -->
+	<a id="open-newsletter" class="action-btn">About</a>
+
+	<!-- +++ List of social media on the bottom right +++ -->
+	<div id="social-nav">
+		<ul>
+			<li>
+				<a href="http://www.stormheart.net" target="_blank"><i class="fa fa-server"></i></a>
+			</li>
+			<li>
+				<a href="https://twitter.com/Nutiler" target="_blank"><i class="fa fa-twitter"></i></a>
+			</li>
+		</ul>
+	</div>
+
+	<!-- Root element of PhotoSwipe, the gallery. Must have class pswp. -->
+	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="pswp__bg"></div>
+		<div class="pswp__scroll-wrap">
+			<div class="pswp__container">
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+			</div>
+			<div class="pswp__ui pswp__ui--hidden">
+				<div class="pswp__top-bar">
+					<div class="pswp__counter"></div>
+					<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+					<button class="pswp__button pswp__button--share" title="Share"></button>
+					<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+					<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+					<div class="pswp__preloader">
+						<div class="pswp__preloader__icn">
+							<div class="pswp__preloader__cut">
+								<div class="pswp__preloader__donut"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+					<div class="pswp__share-tooltip"></div>
+				</div>
+				<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+		            </button>
+				<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+		            </button>
+				<div class="pswp__caption">
+					<div class="pswp__caption__center"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /. Root element of PhotoSwipe. Must have class pswp. -->
+
+	<!-- MultiScroll plugin -->
+	<script src="js/jquery.multiscroll.js"></script>
+	<!-- Slideshow plugin -->
+	<script src="js/vegas-multiscroll.js"></script>
+	<!-- Google Maps API and Skin -->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDfHC0mAo06yMUvrxUdfCW5JXCYLCaou0"></script>
+	<script src="core/map.js"></script>
+	<!-- PhotoSwipe Core JS file -->
+	<script src="js/photoswipe.js"></script>
+	<!-- PhotoSwipe UI JS file -->
+	<script src="js/photoswipe-ui-default.js"></script>
+	<!-- Main JS File -->
+	<script src="js/main-multi-scroll.js"></script>
+	<!-- Server File -->
+	<script src="core/servers.js" type="text/javascript"></script>
+
+</body>
+
+</html>

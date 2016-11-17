@@ -1,0 +1,110 @@
+/*
+* PURE - Sublime Coming Soon Template
+* Build Date: July-August 2016
+* Last Update: August 2016
+* Author: Madeon08 for ThemeHelite
+* Copyright (C) 2016 ThemeHelite
+* This is a premium product available exclusively here : http://themeforest.net/user/Madeon08/portfolio
+*/
+
+// WebKit font-smoothing
+// Values: none, antialiased (default), subpixel-antialiased
+@mixin font-smoothing($value: on) {
+    @if $value == on {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    @else {
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: auto;
+    }
+}
+
+@mixin transform-opal($axex,$axey,$axez) {
+  -webkit-transform: translate3d($axex,$axey,$axez);
+  -moz-transform: translate3d($axex,$axey,$axez);
+  -o-transform: translate3d($axex,$axey,$axez);
+  -ms-transform: translate3d($axex,$axey,$axez);
+  transform: translate3d($axex,$axey,$axez);
+}
+
+@mixin box-shadow($params) {
+  -webkit-box-shadow: $params;
+     -moz-box-shadow: $params;
+          box-shadow: $params;
+}
+
+// Cross-browser mixins border-radius
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+// Cross-browser mixins rotate
+@mixin rotate($rotate) {
+    -ms-transform: rotate($rotate);
+    /* IE 9 */
+    -webkit-transform: rotate($rotate);
+    /* Chrome, Safari, Opera */
+    -moz-transform: rotate($rotate);
+    transform: rotate($rotate);
+}
+
+@mixin skew ($x, $y) {
+   @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+// Devices Media Queries
+$special-phone: 667px;
+$special-tablet: 1024px;
+
+// General Media Queries
+$phone-width: 480px;
+$tablet-width: 768px;
+$medium-width: 1024px;
+$notebook-width: 1281px;
+$desktop-width: 1600px;
+
+@mixin landscape-phone {
+    @media screen and (max-device-width: $special-phone) and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin landscape-tablet {
+    @media only screen and (max-device-width: $special-tablet) and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media only screen and (max-width: $phone-width) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: $tablet-width) {
+        @content;
+    }
+}
+
+@mixin medium {
+    @media only screen and (max-width: $medium-width) {
+        @content;
+    }
+}
+
+@mixin notebook {
+    @media only screen and (max-width: $notebook-width) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media only screen and (max-width: $desktop-width) {
+        @content;
+    }
+}
